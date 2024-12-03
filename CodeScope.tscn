@@ -1,0 +1,211 @@
+[gd_scene load_steps=7 format=3 uid="uid://brd5mcon5hd1h"]
+
+[ext_resource type="FontFile" uid="uid://c21y6ci5bif8h" path="res://addons/codescope/Poppins-Regular.ttf" id="1_k0trh"]
+[ext_resource type="Script" path="res://addons/codescope/code_scope.gd" id="1_qj8qo"]
+[ext_resource type="Texture2D" uid="uid://rgnmr6drhsdf" path="res://addons/codescope/cs_logo.png" id="2_hg33t"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_la6se"]
+font = ExtResource("1_k0trh")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4eide"]
+font = ExtResource("1_k0trh")
+font_size = 24
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_6ipgf"]
+number_color = Color(0.683594, 0.210953, 0.210953, 1)
+symbol_color = Color(0.855469, 0.407188, 0.110275, 1)
+function_color = Color(0.162994, 0.383551, 0.851563, 1)
+member_variable_color = Color(0.115692, 0.871094, 0.410771, 1)
+
+[node name="CodeScope" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_qj8qo")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+current_tab = 0
+
+[node name="Account" type="MarginContainer" parent="TabContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Account"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="logo" type="TextureRect" parent="TabContainer/Account/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("2_hg33t")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="sub" type="Label" parent="TabContainer/Account/VBoxContainer"]
+layout_mode = 2
+text = "AI Code Generation & Optimisation for Godot 4+"
+label_settings = SubResource("LabelSettings_la6se")
+
+[node name="error" type="Label" parent="TabContainer/Account/VBoxContainer"]
+visible = false
+layout_mode = 2
+label_settings = SubResource("LabelSettings_la6se")
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Account/VBoxContainer"]
+layout_mode = 2
+
+[node name="welcome" type="Label" parent="TabContainer/Account/VBoxContainer"]
+layout_mode = 2
+text = "Welcome back...."
+label_settings = SubResource("LabelSettings_4eide")
+
+[node name="username" type="LineEdit" parent="TabContainer/Account/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0trh")
+placeholder_text = "Email"
+
+[node name="password" type="LineEdit" parent="TabContainer/Account/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0trh")
+placeholder_text = "Password"
+secret = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Account/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="btn_logout" type="Button" parent="TabContainer/Account/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Logout"
+
+[node name="btn_login" type="Button" parent="TabContainer/Account/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Login"
+
+[node name="btn_register" type="Button" parent="TabContainer/Account/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Register Account"
+
+[node name="Generation" type="MarginContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Generation"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="input" type="LineEdit" parent="TabContainer/Generation/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_k0trh")
+placeholder_text = "What do you want to create?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Generation/VBoxContainer"]
+layout_mode = 2
+
+[node name="btn_generate" type="Button" parent="TabContainer/Generation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Generate"
+
+[node name="btn_optimise" type="Button" parent="TabContainer/Generation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Optimise"
+
+[node name="btn_modify" type="Button" parent="TabContainer/Generation/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Modify"
+
+[node name="btn_insert" type="Button" parent="TabContainer/Generation/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "Insert Code (Coming Soon)"
+
+[node name="CodeEdit" type="CodeEdit" parent="TabContainer/Generation/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "extends CharacterBody3D
+
+@export var speed: float = 5.0
+@export var acceleration: float = 10.0
+@export var friction: float = 5.0
+@export var shift_multiplier: float = 2.0
+
+var velocity: Vector3 = Vector3.ZERO
+
+func _physics_process(delta: float) -> void:
+    var input_vector = Vector3.ZERO
+    input_vector.x = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
+    input_vector.z = Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
+    input_vector = input_vector.normalized()
+
+    var target_speed = speed
+    if Input.is_action_pressed('ui_shift'):
+        target_speed *= shift_multiplier
+
+    if input_vector != Vector3.ZERO:
+        velocity = velocity.move_toward(input_vector * target_speed, acceleration * delta)
+    else:
+        velocity = velocity.move_toward(Vector3.ZERO, friction * delta)
+
+    move_and_slide(velocity)
+"
+placeholder_text = "Code here..."
+indent_wrapped_lines = true
+scroll_smooth = true
+scroll_vertical = 26.0
+syntax_highlighter = SubResource("CodeHighlighter_6ipgf")
+highlight_all_occurrences = true
+highlight_current_line = true
+symbol_lookup_on_click = true
+gutters_draw_breakpoints_gutter = true
+gutters_draw_bookmarks = true
+gutters_draw_executing_lines = true
+gutters_draw_line_numbers = true
+gutters_zero_pad_line_numbers = true
+gutters_draw_fold_gutter = true
+code_completion_enabled = true
+indent_use_spaces = true
+indent_automatic = true
+auto_brace_completion_enabled = true
+auto_brace_completion_highlight_matching = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="TabContainer/Account/VBoxContainer/HBoxContainer/btn_logout" to="." method="_on_btn_logout_pressed"]
+[connection signal="pressed" from="TabContainer/Account/VBoxContainer/HBoxContainer/btn_register" to="." method="_on_btn_register_pressed"]
+[connection signal="pressed" from="TabContainer/Generation/VBoxContainer/HBoxContainer/btn_generate" to="." method="_on_btn_generate_pressed"]
+[connection signal="pressed" from="TabContainer/Generation/VBoxContainer/HBoxContainer/btn_optimise" to="." method="_on_btn_optimise_pressed"]
+[connection signal="pressed" from="TabContainer/Generation/VBoxContainer/HBoxContainer/btn_modify" to="." method="_on_btn_modify_pressed"]
+[connection signal="pressed" from="TabContainer/Generation/VBoxContainer/HBoxContainer/btn_insert" to="." method="_on_btn_insert_pressed"]
